@@ -64,7 +64,7 @@ var textRegex = /<text.*?>(.*?)<\/text>/ig;
 console.log("We found %d SVG files", svgFiles.length);
 
 // for each file, pull out the attribution detail, write it to a file, and clean up the image
-svgFiles.forEach(function(file, index) {
+svgFiles.forEach(function(file) {
 
     // construct file paths
     var fileName = directory + file;
