@@ -8,5 +8,8 @@
   },
   "author": "Rashan Jibowu",
   "license": "MIT",
-  "devDependencies": {}
+  "devDependencies": {},
+  "dependencies": {
+    "mkdirp": "^0.5.1"
+  }
 }

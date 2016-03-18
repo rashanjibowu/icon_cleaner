@@ -9,20 +9,38 @@
 // Require necessary modules
 var fs = require('fs');
 var path = require('path');
+var mkdirp = require('mkdirp');
 
-// Open SVG file
+// set the directory and paths
 var directory = "icons/";
+var attributionPath = "attribution.txt";
+
+if (process.argv[2]) {
+    directory = process.argv[2] + "/" + directory;
+    attributionPath = process.argv[2] + "/" + attributionPath;
+}
 
 // set up variables
 var preserveAspectRatio = 'preserveAspectRatio="xMidYMid meet"';
 var viewBox = 'viewBox="0 0 100 100"';
 
 // create the attribution file
-var attributionPath = "attribution.txt";
 var attribution = '';
 
 // out path directory
 var out = directory + "dist/";
+
+// create the directory structure
+mkdirp.sync(out);
+
+fs.access(out, fs.R_OK | fs.W_OK, function(error) {
+    if (error) {
+        console.error(error);
+        return;
+    }
+
+    console.log("%s was created!", out);
+});
 
 // Read in the contents
 var files = fs.readdirSync(directory);
@@ -44,16 +62,6 @@ var parRE = /preserveAspectRatio=".+?"/i;
 var textRegex = /<text.*?>(.*?)<\/text>/ig;
 
 console.log("We found %d SVG files", svgFiles.length);
-
-// create the directory structure
-fs.mkdir(out, function(error) {
-    if (error) {
-        console.error(error);
-        return;
-    }
-
-    console.log("%s was created!", out);
-});
 
 // for each file, pull out the attribution detail, write it to a file, and clean up the image
 svgFiles.forEach(function(file, index) {
