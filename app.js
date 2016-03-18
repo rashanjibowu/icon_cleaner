@@ -129,7 +129,7 @@ svgFiles.forEach(function(file, index) {
     // if the viewBox doesn't exist, create it
     // if it does exist, leave it alone!
     if (viewBoxRE.test(newFile)) {
-        newFile = newFile.replace(svgRE, '<svg ' + viewBox);
+        newFile = newFile.replace(viewBoxRE, viewBox);
     }
 
     // if the preserveAspectRatio attribute exists, set it properly, otherwise create it
