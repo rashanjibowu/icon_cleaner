@@ -88,10 +88,21 @@ svgFiles.forEach(function(file) {
     // initialize array of "edit points" to reconstruct the file later
     var editPoints = [];
 
+    var lowY = 99999;
+
+    var yRE = /y="([\d]+?)"/i;
+
     // find each match
     while ((match = textRegex.exec(fileContent)) !== null) {
 
         attributionNote += match[1] + " ";
+        yMatches = match[0].match(yRE);
+
+        if (yMatches) {
+            if (parseInt(yMatches[1]) < lowY) {
+                lowY = parseInt(yMatches[1]);
+            }
+        }
 
         // calculate length of match so we know the portions of the string to remove
         var matchLength = match[0].length;
@@ -125,9 +136,15 @@ svgFiles.forEach(function(file) {
     newFile += fileContent.substr(startPos);
 
     // if the viewBox doesn't exist, create it
-    // if it does exist, leave it alone!
+    // if it does exist, update it!
     if (viewBoxRE.test(newFile)) {
-        newFile = newFile.replace(viewBoxRE, viewBox);
+        var heightRE = /viewBox="([\d]+)\s([\d]+)\s([\d]+)\s([\d]+)"/i;
+        var dims = newFile.match(heightRE);
+        var newHeight = (lowY == 99999) ? dims[4] : lowY - 15;
+        var vb = 'viewBox="' + dims[1] + ' ' + dims[2] + ' ' + dims[3] + ' ' + newHeight + '"';
+        newFile = newFile.replace(viewBoxRE, vb);
+    } else {
+        newFile = newFile.replace(svgRE, '<svg ' + viewBox);
     }
 
     // if the preserveAspectRatio attribute exists, set it properly, otherwise create it
