@@ -98,18 +98,8 @@ svgFiles.forEach(function(file, index) {
 
         // Identify the sections of the string to remove
         editPoints.push({
-            //text: match[0],
-            //lastIndex: textRegex.lastIndex,
-            //indexOf: fileContent.indexOf("<text"),
-            //matchLength: matchLength,
             from: textRegex.lastIndex - matchLength,
-            //fromChar: fileContent[textRegex.lastIndex - matchLength],
-            //fromCharHead: fileContent.substr(textRegex.lastIndex - matchLength, 5),
             to: textRegex.lastIndex - 1,
-            //toChar: fileContent[textRegex.lastIndex - 1],
-            //toCharTail: fileContent.substr(textRegex.lastIndex - 1 - 5, 6),
-            //toCharHead: fileContent.substr(textRegex.lastIndex - 1, 5),
-            //totalLength: fileContent.length
         });
     }
 
