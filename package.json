@@ -1,11 +1,16 @@
 {
   "name": "icon_cleaner",
-  "version": "1.0.0",
-  "description": "Clean icons for use in your apps",
-  "main": "index.js",
+  "version": "0.1.0",
+  "description": "Giving credit to creatives is easier than ever! Icon Cleaner collects attribution details from icons obtained from the awesome Noun Project and writes the data to a single file. Icon Cleaner also removes that information from the SVG and makes other aesthetic improvements to the SVG.",
+  "main": "icon_cleaner.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": "rashanjibowu/icon_cleaner",
+  "keywords": ["icon", "noun project", "attribution", "clean"],
+  "bugs": "https://github.com/rashanjibowu/icon_cleaner/issues",
+  "bin": "./icon_cleaner.js",
+  "preferGlobal": true,
   "author": "Rashan Jibowu",
   "license": "MIT",
   "devDependencies": {},
