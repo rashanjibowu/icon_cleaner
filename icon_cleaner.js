@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
  * Icon Cleaner
  * Description: Giving credit to creatives is easier than ever! Icon Cleaner collects attribution details from icons obtained from the awesome Noun Project and writes the data to a single file. Icon Cleaner also removes that information from the SVG and makes other aesthetic improvements to the SVG. 
