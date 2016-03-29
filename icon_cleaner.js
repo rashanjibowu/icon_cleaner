@@ -8,10 +8,12 @@
  * License: MIT
  */
 
+
 // Require necessary modules
 var fs = require('fs');
 var path = require('path');
 var mkdirp = require('mkdirp');
+var colors = require('colors');
 
 // set the directory and paths
 var current = path.resolve(".");
@@ -181,6 +183,6 @@ fs.writeFile(attributionPath, attribution, "utf-8", function(writeError) {
         return;
     }
 
-    console.log("The attribution details are available: %s", attributionPath);
+    console.log("The attribution details are available: %s".green, attributionPath);
 });
 
