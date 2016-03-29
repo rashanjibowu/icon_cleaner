@@ -7,7 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "rashanjibowu/icon_cleaner",
-  "keywords": ["icon", "noun project", "attribution", "clean"],
+  "keywords": [
+    "icon",
+    "noun project",
+    "attribution",
+    "clean"
+  ],
   "bugs": "https://github.com/rashanjibowu/icon_cleaner/issues",
   "bin": "./icon_cleaner.js",
   "preferGlobal": true,
