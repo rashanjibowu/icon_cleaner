@@ -14,13 +14,18 @@ var path = require('path');
 var mkdirp = require('mkdirp');
 
 // set the directory and paths
+var current = path.resolve(".");
 var directory = "icons/";
 var attributionPath = "attribution.txt";
 
+// Users can specify their own parent directory
 if (process.argv[2]) {
     directory = process.argv[2] + "/" + directory;
     attributionPath = process.argv[2] + "/" + attributionPath;
 }
+
+directory = path.join(current, directory);
+attributionPath = path.join(current, attributionPath);
 
 // set up variables
 var preserveAspectRatio = 'preserveAspectRatio="xMidYMid meet"';
@@ -30,7 +35,7 @@ var viewBox = 'viewBox="0 0 100 100"';
 var attribution = '';
 
 // out path directory
-var out = directory + "dist/";
+var out = path.join(directory, "dist");
 
 // create the directory structure
 mkdirp.sync(out);
@@ -69,8 +74,8 @@ console.log("We found %d SVG files", svgFiles.length);
 svgFiles.forEach(function(file) {
 
     // construct file paths
-    var fileName = directory + file;
-    var newFileName = out + file;
+    var fileName = path.join(directory, file);
+    var newFileName = path.join(out, file);
 
     var fileContent = fs.readFileSync(fileName, "utf-8");
 
