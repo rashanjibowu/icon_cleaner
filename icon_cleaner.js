@@ -140,9 +140,11 @@ svgFiles.forEach(function(file) {
     if (viewBoxRE.test(newFile)) {
         var heightRE = /viewBox="([\d]+)\s([\d]+)\s([\d]+)\s([\d]+)"/i;
         var dims = newFile.match(heightRE);
-        var newHeight = (lowY == 99999) ? dims[4] : lowY - 15;
-        var vb = 'viewBox="' + dims[1] + ' ' + dims[2] + ' ' + dims[3] + ' ' + newHeight + '"';
-        newFile = newFile.replace(viewBoxRE, vb);
+        if (dims) {
+            var newHeight = (lowY == 99999) ? dims[4] : lowY - 15;
+            var vb = 'viewBox="' + dims[1] + ' ' + dims[2] + ' ' + dims[3] + ' ' + newHeight + '"';
+            newFile = newFile.replace(viewBoxRE, vb);
+        }
     } else {
         newFile = newFile.replace(svgRE, '<svg ' + viewBox);
     }
